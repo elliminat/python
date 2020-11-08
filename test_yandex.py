@@ -22,7 +22,7 @@ def test_search():
     search_field = page.enter_to_search_field(driver, wait, findsrt)
     page.enter_and_check_suggest(driver, wait, findsrt)
     page.click_enter(search_field)
-    assert page.check_url(driver, wait, siteurl)
+    assert page.check_url(driver, wait, siteurl) #проверка на то что в результатах есть ссылка на сайт банка
      
 
 def test_img():
@@ -36,8 +36,10 @@ def test_img():
     button_next = page.active_nav_buttons_forvard(driver, wait)
     img_src_first = page.get_img_src(driver)
     page.click_element(button_next)
+    img_src_second = page.get_img_src(driver)
+    assert img_src_first != img_src_second #проверка ссылок на первое изображение и изображение после нажатия на кнопку смены изображений
     button_back = page.active_nav_buttons_back(driver, wait)
     page.click_element(button_back)
     img_src_second = page.get_img_src(driver)
-    assert img_src_first == img_src_second
+    assert img_src_first == img_src_second #проверка ссылок на первое изображение до и после смены изображений
     driver.quit()

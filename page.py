@@ -37,7 +37,7 @@ def check_url(driver, wait, siteurl):
 	for element in srresvalue[:5]:
 		if siteurl in element.text.lower():
 			is_str_preasent = True
-	return is_str_preasent #
+	return is_str_preasent
 
 def search_img_link(driver, wait):
 	wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='services-new__list']/a")))
@@ -45,7 +45,7 @@ def search_img_link(driver, wait):
 	
 def switch_active_window_check_url(driver, wait):
 	driver.switch_to.window(driver.window_handles[-1])
-	assert 'https://yandex.ru/images/?utm_source=main_stripe_big' in driver.current_url
+	assert 'https://yandex.ru/images/?utm_source=main_stripe_big' in driver.current_url #проверка на то что мы перешли на Яндекс картинки
 	wait.until(EC.presence_of_element_located((By.XPATH,'//div[@class="PopularRequestList-Item PopularRequestList-Item_pos_0 ImagesList-Item"]')))
 	return driver.find_element_by_xpath('//div[@class="PopularRequestList-Item PopularRequestList-Item_pos_0 ImagesList-Item"]/a')
 	
